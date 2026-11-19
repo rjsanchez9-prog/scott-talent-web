@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Scott Talent · Solicita tu plaza</title>
+<meta name="description" content="Scott Talent conecta escuelas de ciclismo con el equipo Scott. Solo 5 escuelas en 2027. Adhesión gratuita.">
+<link rel="icon" href="logo/scott-talent-avatar.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="logo/scott-talent-avatar.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Scott Talent · Solo 5 escuelas en 2027">
+<meta property="og:description" content="De la escuela al equipo. Adhesión gratuita para escuelas de ciclismo. Presenta tu escuela.">
+<meta property="og:url" content="https://rjsanchez9-prog.github.io/scott-talent-web/">
+<meta property="og:image" content="https://rjsanchez9-prog.github.io/scott-talent-web/logo/scott-talent-avatar.png">
+<meta name="theme-color" content="#1F3236">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Colores tomados de la equipación Scott 2027 (verde azulado, petróleo y ciruela). */
+:root{
+  --teal:#5F9693;        /* verde Scott 2027, color principal */
+  --teal-text:#3F7471;   /* verde para texto sobre fondo claro */
+  --teal-light:#8CC0BC;  /* verde para texto sobre fondo oscuro */
+  --teal-soft:#E3EFEE;
+  --petrol:#1F3236;      /* petróleo oscuro: fondos y texto */
+  --petrol-2:#2C4549;
+  --plum:#7A3A5C;        /* ciruela: botones y acentos */
+  --plum-dark:#5E2A46;
+  --bg:#F3F7F6;
+  --surface:#FFFFFF;
+  --ink:#16262A;
+  --muted:#52676A;
+  --line:#D3E0DF;
+  --error:#B3261E;
+  --f-display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--f-display);text-transform:uppercase;line-height:.95;margin:0;letter-spacing:.01em;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:16px}
+@media (min-width:700px){.wrap{padding-inline:24px}}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-text)}
+:focus-visible{outline:3px solid var(--plum);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 1rem var(--f-body);background:var(--plum);color:#fff;border:0;border-radius:999px;padding:14px 26px;text-decoration:none;cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--plum-dark)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.btn.ghost:hover{border-color:var(--teal)}
+.draft-note{background:#FFF4D6;color:#5C4300;font-size:.85rem;text-align:center;padding:8px 16px}
+
+/* Portada: manchas como las de la equipación */
+.hero{position:relative;overflow:hidden;background:var(--petrol);color:#fff}
+.hero::before{content:"";position:absolute;inset:-20%;background:
+  radial-gradient(38% 30% at 82% 22%,rgba(95,150,147,.95),transparent 70%),
+  radial-gradient(28% 24% at 10% 80%,rgba(122,58,92,.9),transparent 70%),
+  radial-gradient(30% 26% at 60% 95%,rgba(95,150,147,.6),transparent 70%),
+  radial-gradient(22% 20% at 95% 70%,rgba(122,58,92,.8),transparent 70%),
+  radial-gradient(28% 24% at 30% 10%,rgba(44,69,73,.9),transparent 70%);
+  filter:blur(18px)}
+.hero .wrap{position:relative;padding-block:28px 56px}
+.logo{display:block;width:200px;height:auto}
+@media (min-width:700px){.logo{width:240px}}
+.hero-grid{display:grid;gap:32px;margin-top:44px}
+@media (min-width:860px){.hero-grid{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:end;margin-top:64px}}
+.hero h1{font-size:clamp(3.2rem,11vw,6.6rem);font-weight:900}
+.hero h1 em{font-style:normal;color:var(--teal-light)}
+.hero .lede{font-size:1.15rem;max-width:52ch;margin-top:20px;color:#DCE8E7}
+.hero .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;align-items:center}
+.hero .cta-row small{color:#B9CFCD;font-size:.9rem}
+.panel{background:rgba(15,28,31,.55);border:1px solid rgba(140,192,188,.35);border-radius:14px;padding:22px;backdrop-filter:blur(6px)}
+.panel .big{font-family:var(--f-display);font-weight:900;font-size:4.4rem;line-height:.85;color:var(--teal-light)}
+.panel h2{font-size:1.6rem;margin-top:6px}
+.seats{display:flex;gap:8px;margin:14px 0 18px}
+.seats i{width:30px;height:30px;border:2px solid var(--teal-light);border-radius:50%}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center}
+.countdown div{background:rgba(255,255,255,.07);border-radius:8px;padding:8px 4px}
+.countdown b{display:block;font-family:var(--f-display);font-size:1.9rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.countdown span{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#B9CFCD}
+.panel .close{margin-top:12px;font-size:.88rem;color:#B9CFCD}
+
+section{padding-block:64px}
+.sec-head{display:grid;gap:10px;margin-bottom:30px;max-width:64ch}
+.sec-head h2{font-size:clamp(2.1rem,6vw,3.2rem);font-weight:800}
+.sec-head p{color:var(--muted)}
+
+.about{display:grid;gap:28px}
+@media (min-width:860px){.about{grid-template-columns:1fr 1fr;align-items:center}}
+.about p+p{margin-top:12px}
+.photo{margin:0;position:relative;border-radius:14px;overflow:hidden;background:var(--petrol);aspect-ratio:4/5;max-height:640px}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block}
+.photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 14px;background:linear-gradient(transparent,rgba(15,28,31,.85));color:#fff;font-size:.88rem;font-weight:600}
+
+.benefits{display:grid;gap:14px}
+@media (min-width:700px){.benefits{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.benefit{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px}
+.benefit .k{grid-row:span 2;font-family:var(--f-display);font-weight:900;font-size:2.6rem;line-height:.85;color:var(--plum)}
+.benefit h3{font-size:1.35rem}
+.benefit p{color:var(--muted);font-size:.95rem}
+
+.dark{background:var(--petrol);color:#fff}
+.dark .eyebrow{color:var(--teal-light)}
+.dark .sec-head p{color:#B9CFCD}
+.req{display:grid;gap:12px;list-style:none;margin:0;padding:0}
+@media (min-width:700px){.req{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.req li{border-top:3px solid var(--teal);padding-top:12px;font-weight:600}
+.steps{display:grid;gap:12px;list-style:none;margin:40px 0 0;padding:0;counter-reset:s}
+@media (min-width:700px){.steps{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.steps li{counter-increment:s;background:var(--petrol-2);border-radius:12px;padding:18px}
+.steps li::before{content:counter(s);font-family:var(--f-display);font-weight:900;font-size:2rem;line-height:1;color:var(--teal-light);display:block;margin-bottom:6px}
+.steps b{display:block;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-light)}
+.steps p{color:#DCE8E7;font-size:.95rem}
+
+/* Formulario */
+.form-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;max-width:760px}
+@media (min-width:700px){.form-card{padding:32px}}
+.progress{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.bar{height:6px;background:var(--teal-soft);border-radius:999px;overflow:hidden;margin-bottom:26px}
+.bar i{display:block;height:100%;width:0;background:var(--teal);transition:width .25s}
+fieldset{border:0;margin:0;padding:0;display:none}
+fieldset.on{display:grid;gap:18px}
+fieldset.on+fieldset.on{margin-top:40px;padding-top:28px;border-top:2px solid var(--line)}
+legend{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:1.9rem;line-height:1;margin-bottom:4px;padding:0}
+.hint{color:var(--muted);font-size:.92rem;margin-top:-8px}
+.field{display:grid;gap:6px}
+.field label,.field .lbl{font-weight:600;font-size:.95rem}
+.req-mark{color:var(--plum)}
+.field small{color:var(--muted);font-size:.83rem}
+input[type=text],input[type=email],input[type=tel],input[type=url],input[type=number],select,textarea{font:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);outline:none;box-shadow:0 0 0 3px var(--teal-soft)}
+textarea{min-height:110px;resize:vertical}
+.two{display:grid;gap:18px}
+@media (min-width:600px){.two{grid-template-columns:1fr 1fr}}
+.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (min-width:600px){.cats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.cats label{display:grid;gap:4px;font-size:.88rem;font-weight:600}
+.total{font-size:.92rem;color:var(--teal-text);font-weight:700}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.checks label{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.92rem;cursor:pointer}
+.checks input{accent-color:var(--plum)}
+.checks label:has(input:checked){border-color:var(--teal);background:var(--teal-soft)}
+.yn{display:grid;gap:10px}
+.yn .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.yn select{width:auto;min-width:150px}
+.legal{display:grid;gap:10px;background:var(--bg);border-radius:12px;padding:16px}
+.legal label{display:flex;gap:10px;align-items:flex-start;font-size:.92rem}
+.legal input{margin-top:4px;accent-color:var(--plum);width:18px;height:18px;flex:none}
+.err{color:var(--error);font-size:.85rem;font-weight:600;display:none}
+.invalid .err{display:block}
+.invalid input,.invalid select,.invalid textarea{border-color:var(--error)}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:28px}
+.nav .btn{min-width:130px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.done{display:none;text-align:center;padding:24px 8px}
+.done h3{font-size:2.2rem;margin-bottom:10px}
+.done p{color:var(--muted);max-width:46ch;margin:0 auto}
+
+.faq{max-width:760px;display:grid;gap:10px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.faq summary{font-weight:700;cursor:pointer}
+.faq details p{margin-top:10px;color:var(--muted)}
+.family{margin-top:28px;max-width:760px;background:var(--teal-soft);border-radius:14px;padding:20px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+.family p{font-weight:600}
+
+footer{background:var(--petrol);color:#B9CFCD;padding-block:36px 48px;font-size:.88rem}
+footer .brands{display:flex;flex-wrap:wrap;gap:8px 24px;font-family:var(--f-display);font-weight:800;font-size:1.4rem;text-transform:uppercase;color:#fff;margin-bottom:18px}
+footer p+p{margin-top:6px}
+footer details{margin-top:16px}
+footer summary{cursor:pointer;color:#fff;font-weight:600}
+footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="logo/scott-talent-logo-fondo-oscuro.svg" alt="Scott Talent" width="220" height="50">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow" style="color:var(--teal-light)">Escuelas de ciclismo · Convocatoria 2027</p>
+        <h1 style="margin-top:14px">De la escuela<br><em>al equipo</em></h1>
+        <p class="lede">Scott Talent conecta escuelas de ciclismo con el equipo Scott: contacto directo, seguimiento y material en condiciones especiales. Al frente, Enrique Morcillo.</p>
+        <div class="cta-row">
+          <a class="btn" href="#solicitud">Solicitar plaza</a>
+          <small>Adhesión gratuita</small>
+        </div>
+      </div>
+      <aside class="panel" aria-label="Plazas y plazo">
+        <div class="big">5</div>
+        <h2>Escuelas en 2027</h2>
+        <div class="seats" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="countdown" id="countdown" aria-live="off">
+          <div><b data-u="d">–</b><span>días</span></div>
+          <div><b data-u="h">–</b><span>horas</span></div>
+          <div><b data-u="m">–</b><span>min</span></div>
+          <div><b data-u="s">–</b><span>seg</span></div>
+        </div>
+        <p class="close" id="close-text">Solicitudes abiertas hasta el 30 de noviembre</p>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="que-es">
+  <div class="wrap about">
+    <div>
+      <div class="sec-head" style="margin-bottom:18px">
+        <p class="eyebrow">Qué es Scott Talent</p>
+        <h2>Un puente hacia la élite</h2>
+      </div>
+      <p>En España cada vez cuesta más que un chaval llegue a profesional de mountain bike. Las escuelas hacen el trabajo de base, pero entre la escuela y la élite falta un puente.</p>
+      <p>Scott Talent es una red de escuelas de ciclismo adheridas al equipo Scott. El equipo es un objetivo visible y cercano, y Enrique Morcillo, manager del equipo en 2027, es la persona de referencia para cada escuela.</p>
+    </div>
+    <figure class="photo"><img src="img/enrique-morcillo.jpg" alt="Enrique Morcillo, responsable de Scott Talent" width="1000" height="1500" loading="lazy"><figcaption>Enrique Morcillo · Manager del equipo en 2027 y responsable de Scott Talent</figcaption></figure>
+  </div>
+</section>
+
+<section id="ventajas" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Para tu escuela</p>
+      <h2>Qué recibe una escuela adherida</h2>
+    </div>
+    <div class="benefits">
+      <div class="benefit"><div class="k">A</div><h3>Conexión directa con el equipo</h3><p>Una línea abierta con el cuerpo técnico. Si tenéis un chaval con proyección, el equipo lo conoce y lo sigue de cerca.</p></div>
+      <div class="benefit"><div class="k">B</div><h3>Visitas de seguimiento</h3><p>Enrique visita cada escuela una o dos veces al año: entrenamientos, experiencia de la élite y orientación a monitores y familias.</p></div>
+      <div class="benefit"><div class="k">C</div><h3>Pedido anual con precio especial</h3><p>Un pedido al año a nombre de la escuela, con precio especial en material de las marcas del equipo.</p></div>
+      <div class="benefit"><div class="k">D</div><h3>Campus Scott Talent 2027</h3><p>Varios días de convivencia entre las escuelas fundadoras y los corredores del equipo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="requisitos">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Quién puede presentarse</p>
+      <h2>Requisitos</h2>
+      <p>La dirección de Scott Talent analiza a fondo cada candidatura. Las cinco escuelas elegidas estarán repartidas por toda España.</p>
+    </div>
+    <ul class="req">
+      <li>Escuela deportiva de ciclismo con CIF propio</li>
+      <li>Afiliada a su federación autonómica</li>
+      <li>Chavales compitiendo en mountain bike</li>
+      <li>Un responsable técnico de contacto</li>
+    </ul>
+    <ol class="steps">
+      <li><b>Hasta el 30 nov</b><p>Envía la solicitud desde esta página.</p></li>
+      <li><b>1 – 11 dic</b><p>Toma de contacto con las escuelas candidatas.</p></li>
+      <li><b>Primera quincena de dic</b><p>Selección y firma de los acuerdos.</p></li>
+      <li><b>17 dic</b><p>Anuncio de las cinco escuelas fundadoras.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="solicitud">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Solicitud</p>
+      <h2>Presenta tu escuela</h2>
+      <p>Unos 10 minutos. Los campos con <span class="req-mark">*</span> son obligatorios. Lo que escribas se guarda en este navegador hasta que lo envíes.</p>
+    </div>
+
+    <div class="form-card">
+      <form id="form" novalidate>
+        <div class="hp" aria-hidden="true"><label>No rellenar este campo<input type="text" name="web_empresa" tabindex="-1" autocomplete="off"></label></div>
+        <div class="progress"><span id="step-label">Paso 1 de 7</span><span id="step-name">La escuela</span></div>
+        <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+
+        <fieldset data-name="La escuela" class="on">
+          <legend>La escuela</legend>
+          <div class="field"><label for="escuela">Nombre de la escuela o club <span class="req-mark">*</span></label><input id="escuela" name="escuela" type="text" required autocomplete="organization"><p class="err">Indica el nombre de la escuela.</p></div>
+          <div class="two">
+            <div class="field"><label for="cif">CIF <span class="req-mark">*</span></label><input id="cif" name="cif" type="text" required pattern="[A-Za-z][0-9]{7}[0-9A-Za-z]" placeholder="G12345678"><p class="err">Revisa el CIF (una letra y 8 caracteres).</p></div>
+            <div class="field"><label for="fundacion">Año de fundación</label><input id="fundacion" name="fundacion" type="number" min="1900" max="2026" inputmode="numeric"></div>
+          </div>
+          <div class="two">
+            <div class="field"><label for="provincia">Provincia <span class="req-mark">*</span></label>
+              <select id="provincia" name="provincia" required><option value="">Elige provincia</option></select><p class="err">Elige la provincia.</p></div>
+            <div class="field"><label for="localidad">Localidad <span class="req-mark">*</span></label><input id="localidad" name="localidad" type="text" required><p class="err">Indica la localidad.</p></div>
+          </div>
+          <div class="field"><label for="federacion">Federación autonómica a la que está afiliada <span class="req-mark">*</span></label><input id="federacion" name="federacion" type="text" required placeholder="Ej.: Federació de Ciclisme de les Illes Balears"><p class="err">Indica la federación.</p></div>
+          <div class="two">
+            <div class="field"><label for="web">Web</label><input id="web" name="web" type="url" placeholder="https://"></div>
+            <div class="field"><label for="instagram">Instagram</label><input id="instagram" name="instagram" type="text" placeholder="@tuescuela"></div>
+          </div>
+        </fieldset>
+
+        <fieldset data-name="Persona de contacto">
+          <legend>Persona de contacto</legend>
+          <p class="hint">El responsable técnico con el que hablaremos.</p>
+          <div class="two">
+            <div class="field"><label for="contacto">Nombre y apellidos <span class="req-mark">*</span></label><input id="contacto" name="contacto" type="text" required autocomplete="name"><p class="err">Indica el nombre.</p></div>
+            <div class="field"><label for="cargo">Cargo en la escuela <span class="req-mark">*</span></label><input id="cargo" name="cargo" type="text" required placeholder="Director técnico, monitor…"><p class="err">Indica el cargo.</p></div>
+          </div>
+          <div class="two">
+            <div class="field"><label for="email">Email <span class="req-mark">*</span></label><input id="email" name="email" type="email" required autocomplete="email"><p class="err">Revisa el email.</p></div>
+            <div class="field"><label for="telefono">Teléfono <span class="req-mark">*</span></label><input id="telefono" name="telefono" type="tel" required autocomplete="tel" pattern="[+0-9 ]{9,15}"><p class="err">Revisa el teléfono.</p></div>
+          </div>
+          <div class="field"><label for="titulacion">Titulación</label>
+            <select id="titulacion" name="titulacion"><option value="">Elige una opción</option><option>Técnico deportivo nivel I</option><option>Técnico deportivo nivel II</option><option>Técnico deportivo nivel III</option><option>Grado en Ciencias del Deporte</option><option>Otra</option><option>Sin titulación</option></select></div>
+        </fieldset>
+
+        <fieldset data-name="Chavales y disciplinas">
+          <legend>Chavales y disciplinas</legend>
+          <div class="field"><span class="lbl">Número de chavales por categoría <span class="req-mark">*</span></span>
+            <div class="cats" id="cats">
+              <label>Promesas<input type="number" min="0" inputmode="numeric" name="n_promesas"></label>
+              <label>Principiantes<input type="number" min="0" inputmode="numeric" name="n_principiantes"></label>
+              <label>Alevines<input type="number" min="0" inputmode="numeric" name="n_alevines"></label>
+              <label>Infantiles<input type="number" min="0" inputmode="numeric" name="n_infantiles"></label>
+              <label>Cadetes<input type="number" min="0" inputmode="numeric" name="n_cadetes"></label>
+              <label>Júnior<input type="number" min="0" inputmode="numeric" name="n_junior"></label>
+            </div>
+            <p class="total" id="total">Total: 0</p>
+            <p class="err" id="cats-err">Indica cuántos chavales tenéis al menos en una categoría.</p>
+          </div>
+          <div class="field"><label for="n_chicas">De ellos, ¿cuántas son chicas?</label><input id="n_chicas" name="n_chicas" type="number" min="0" inputmode="numeric" style="max-width:160px"></div>
+          <div class="field"><span class="lbl">Disciplinas que practicáis</span>
+            <div class="checks">
+              <label><input type="checkbox" name="disciplinas" value="XCO">XCO</label>
+              <label><input type="checkbox" name="disciplinas" value="XCM">XCM</label>
+              <label><input type="checkbox" name="disciplinas" value="Rally">Rally</label>
+              <label><input type="checkbox" name="disciplinas" value="Enduro">Enduro</label>
+              <label><input type="checkbox" name="disciplinas" value="Gravel">Gravel</label>
+              <label><input type="checkbox" name="disciplinas" value="Carretera">Carretera</label>
+              <label><input type="checkbox" name="disciplinas" value="Ciclocross">Ciclocross</label>
+              <label><input type="checkbox" name="disciplinas" value="Pumptrack">Pumptrack</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset data-name="Cómo trabajáis">
+          <legend>Cómo trabajáis</legend>
+          <div class="two">
+            <div class="field"><label for="n_monitores">Número de monitores</label><input id="n_monitores" name="n_monitores" type="number" min="0" inputmode="numeric"></div>
+            <div class="field"><label for="dias_semana">Días de entrenamiento por semana</label><select id="dias_semana" name="dias_semana"><option value="">Elige</option><option>1</option><option>2</option><option>3</option><option>4 o más</option></select></div>
+          </div>
+          <div class="field"><label for="titulaciones_monitores">Titulaciones de los monitores</label><input id="titulaciones_monitores" name="titulaciones_monitores" type="text" placeholder="Ej.: 2 nivel II, 1 nivel I"></div>
+          <div class="field"><label for="temporada">¿Entrenáis todo el año?</label><select id="temporada" name="temporada"><option value="">Elige</option><option>Sí, todo el año</option><option>Solo en temporada de competición</option><option>Otro</option></select></div>
+          <div class="field"><span class="lbl">Instalaciones</span>
+            <div class="checks">
+              <label><input type="checkbox" name="instalaciones" value="Circuito propio">Circuito propio</label>
+              <label><input type="checkbox" name="instalaciones" value="Pumptrack">Pumptrack</label>
+              <label><input type="checkbox" name="instalaciones" value="Taller">Taller</label>
+              <label><input type="checkbox" name="instalaciones" value="Local o sede">Local o sede</label>
+              <label><input type="checkbox" name="instalaciones" value="Zona de entrenamiento cedida">Zona cedida</label>
+            </div>
+          </div>
+          <div class="field"><label for="metodologia">¿Cómo trabajáis por edades? <span class="req-mark">*</span></label><textarea id="metodologia" name="metodologia" required maxlength="800" placeholder="Unas líneas sobre vuestra forma de entrenar en cada categoría."></textarea><p class="err">Cuéntanos brevemente cómo trabajáis.</p></div>
+          <div class="field"><label for="club_superior">¿Formáis parte de un club con categorías superiores (júnior, sub-23, élite)?</label><select id="club_superior" name="club_superior"><option value="">Elige</option><option>Sí</option><option>No</option></select></div>
+        </fieldset>
+
+        <fieldset data-name="Competición">
+          <legend>Competición</legend>
+          <div class="field"><span class="lbl">Competiciones en las que participáis</span>
+            <div class="checks">
+              <label><input type="checkbox" name="competiciones" value="Locales">Locales</label>
+              <label><input type="checkbox" name="competiciones" value="Copa autonómica">Copa autonómica</label>
+              <label><input type="checkbox" name="competiciones" value="Campeonato autonómico">Campeonato autonómico</label>
+              <label><input type="checkbox" name="competiciones" value="Copa de España">Copa de España</label>
+              <label><input type="checkbox" name="competiciones" value="Campeonato de España">Campeonato de España</label>
+              <label><input type="checkbox" name="competiciones" value="Internacional">Internacional</label>
+            </div>
+          </div>
+          <div class="field"><label for="resultados">Resultados destacados de las dos últimas temporadas</label><textarea id="resultados" name="resultados" maxlength="800"></textarea></div>
+          <div class="field"><label for="proyeccion">¿Tenéis algún corredor con proyección?</label><textarea id="proyeccion" name="proyeccion" maxlength="600" placeholder="Categoría y resultados."></textarea><small>Por favor, no escribas nombres ni datos personales de menores.</small></div>
+          <div class="field"><label for="antiguos">¿Algún antiguo alumno ha llegado a categorías superiores o a un equipo?</label><textarea id="antiguos" name="antiguos" maxlength="600"></textarea></div>
+        </fieldset>
+
+        <fieldset data-name="Material y marcas">
+          <legend>Material y marcas</legend>
+          <div class="field"><label for="marcas_actuales">¿Qué marcas de bici, ropa y neumáticos usáis ahora? <span class="req-mark">*</span></label><input id="marcas_actuales" name="marcas_actuales" type="text" required><p class="err">Indica las marcas que usáis.</p></div>
+          <div class="field"><label for="acuerdo_marca">¿Tenéis algún acuerdo o patrocinio con una marca? <span class="req-mark">*</span></label><select id="acuerdo_marca" name="acuerdo_marca" required><option value="">Elige</option><option>No</option><option>Sí</option></select><p class="err">Elige una opción.</p></div>
+          <div class="field"><label for="acuerdo_detalle">Si tenéis acuerdo, ¿con qué marca y hasta cuándo?</label><input id="acuerdo_detalle" name="acuerdo_detalle" type="text"></div>
+          <div class="field"><label for="tienda">Tienda de bicis de referencia en vuestra zona</label><input id="tienda" name="tienda" type="text" placeholder="Nombre y localidad"></div>
+          <div class="field"><label for="volumen">Material que compráis más o menos por temporada</label><select id="volumen" name="volumen"><option value="">Elige</option><option>Poco (algunas prendas o neumáticos sueltos)</option><option>Medio (ropa para todo el grupo)</option><option>Alto (ropa, neumáticos y componentes para todo el grupo)</option></select></div>
+        </fieldset>
+
+        <fieldset data-name="Compromiso">
+          <legend>Compromiso</legend>
+          <div class="field"><label for="motivacion">¿Por qué queréis formar parte de Scott Talent? <span class="req-mark">*</span></label><textarea id="motivacion" name="motivacion" required maxlength="600"></textarea><small id="motivacion-count">0 / 600</small><p class="err">Cuéntanos por qué queréis entrar.</p></div>
+          <div class="field"><span class="lbl">¿Podríais…? <span class="req-mark">*</span></span>
+            <div class="yn">
+              <div class="row"><span>Recibir una o dos visitas al año</span><select name="ok_visitas" required><option value="">Elige</option><option>Sí</option><option>No</option><option>Tendríamos que verlo</option></select></div>
+              <div class="row"><span>Venir al campus de otoño de 2027</span><select name="ok_campus" required><option value="">Elige</option><option>Sí</option><option>No</option><option>Tendríamos que verlo</option></select></div>
+              <div class="row"><span>Conectaros a las sesiones online</span><select name="ok_online" required><option value="">Elige</option><option>Sí</option><option>No</option><option>Tendríamos que verlo</option></select></div>
+            </div>
+            <p class="err">Responde a las tres preguntas.</p>
+          </div>
+          <div class="field"><label for="autorizacion_imagen">¿Tenéis autorización de imagen de las familias?</label><select id="autorizacion_imagen" name="autorizacion_imagen"><option value="">Elige</option><option>Sí, de todas</option><option>De algunas</option><option>No</option></select></div>
+          <div class="field"><label for="ok_videollamada">¿Tendríais disponibilidad para una videollamada con el equipo? <span class="req-mark">*</span></label><select id="ok_videollamada" name="ok_videollamada" required><option value="">Elige</option><option>Sí</option><option>No</option></select><p class="err">Elige una opción.</p></div>
+          <div class="field"><label for="videollamada">Propón una fecha y una franja horaria</label><input id="videollamada" name="videollamada" type="text" placeholder="Ej.: martes 2, por la tarde"></div>
+          <div class="legal">
+            <label><input type="checkbox" name="acepta_privacidad" required> <span>He leído y acepto la <a href="#privacidad">política de privacidad</a>. <span class="req-mark">*</span></span></label>
+            <label><input type="checkbox" name="declara_veracidad" required> <span>Declaro que los datos de esta solicitud son ciertos. <span class="req-mark">*</span></span></label>
+            <label><input type="checkbox" name="acepta_contacto" required> <span>Acepto que el equipo de Scott Talent me contacte sobre esta solicitud. <span class="req-mark">*</span></span></label>
+            <p class="err" id="legal-err">Para enviar la solicitud, marca las tres casillas.</p>
+          </div>
+        </fieldset>
+
+        <div class="nav" id="nav">
+          <button type="button" class="btn ghost" id="prev">Anterior</button>
+          <button type="button" class="btn" id="next">Siguiente</button>
+        </div>
+      </form>
+      <div class="done" id="done" role="status">
+        <h3>¡Solicitud enviada!</h3>
+        <p>Gracias. Hemos recibido la candidatura de tu escuela. Entre el 1 y el 11 de diciembre contactaremos con las escuelas candidatas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Dudas</p>
+      <h2>Preguntas frecuentes</h2>
+    </div>
+    <div class="faq">
+      <details><summary>¿Cuánto cuesta adherirse?</summary><p>Nada. La adhesión a Scott Talent es gratuita.</p></details>
+      <details><summary>¿Cuántas escuelas entran?</summary><p>Cinco en 2027, repartidas por toda España. Es una primera edición fundadora y limitada.</p></details>
+      <details><summary>¿Cómo se eligen las escuelas?</summary><p>La dirección de Scott Talent analiza a fondo cada candidatura y valora todos los aspectos de la escuela que se presenta.</p></details>
+      <details><summary>¿Cuándo sabremos si hemos entrado?</summary><p>Entre el 1 y el 11 de diciembre contactaremos con las escuelas candidatas. Las cinco escuelas fundadoras se anuncian el 17 de diciembre.</p></details>
+      <details><summary>¿Hay bicicletas para los chavales?</summary><p>Para corredores con un nivel excepcional se estudia cada caso con la escuela, Enrique y Scott España, y la compra se hace en un punto de venta Scott cercano.</p></details>
+    </div>
+    <div class="family">
+      <p>¿Tu hijo o hija va a una escuela de ciclismo? Pásales este enlace.</p>
+      <button class="btn ghost" type="button" id="share">Compartir</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brands"><span>Scott</span><span>Castelli</span><span>Chaoyang</span><span>ISB Sport Bearings</span><span>Nutrinovex</span><span>Madeinn</span></div>
+    <p>Scott Talent · Equipo Scott · C.D. Probikes Morón</p>
+    <details id="privacidad">
+      <summary>Política de privacidad</summary>
+      <div>
+        <p><b>Responsable:</b> C.D. Probikes Morón · CIF G-04981965 · C/ San Roque, 8, 41530 Morón de la Frontera (Sevilla) · rjsanchez9@gmail.com.</p>
+        <p><b>Finalidad:</b> gestionar la solicitud de adhesión de la escuela a Scott Talent y contactar con su responsable técnico.</p>
+        <p><b>Legitimación:</b> consentimiento de la persona que envía el formulario.</p>
+        <p><b>Conservación:</b> durante el proceso de selección. Si la escuela no resulta elegida, los datos se borran el 31 de enero de 2027, salvo que nos pida conservarlos para próximas convocatorias.</p>
+        <p><b>Destinatarios:</b> no se ceden datos a terceros salvo obligación legal. Los datos se guardan en Google (Google Sheets).</p>
+        <p><b>Derechos:</b> acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a rjsanchez9@gmail.com. Puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
+      </div>
+    </details>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* Ajustes: fecha de cierre y dirección del Google Sheet (se rellena al conectarlo). */
+  var CONFIG={
+    cierre:'2026-11-30T23:59:00+01:00',
+    endpoint:'https://script.google.com/macros/s/AKfycbzJHukEsP5VmBRNDeu5Zq-2O0llbxQE4pDLrDQ0v_Q1d8ioUVV7R0-837Ig6Z1rrv7fSw/exec'
+  };
+
+  /* Cuenta atrás */
+  var end=new Date(CONFIG.cierre).getTime(),cd=document.getElementById('countdown');
+  function tick(){
+    var ms=end-Date.now();
+    if(ms<=0){cd.style.display='none';document.getElementById('close-text').textContent='La convocatoria está cerrada';return}
+    var s=Math.floor(ms/1000),v={d:Math.floor(s/86400),h:Math.floor(s%86400/3600),m:Math.floor(s%3600/60),s:s%60};
+    for(var k in v){cd.querySelector('[data-u="'+k+'"]').textContent=String(v[k]).padStart(2,'0')}
+  }
+  tick();setInterval(tick,1000);
+
+  /* Provincias */
+  var prov='A Coruña,Álava,Albacete,Alicante,Almería,Asturias,Ávila,Badajoz,Barcelona,Bizkaia,Burgos,Cáceres,Cádiz,Cantabria,Castellón,Ceuta,Ciudad Real,Córdoba,Cuenca,Gipuzkoa,Girona,Granada,Guadalajara,Huelva,Huesca,Illes Balears,Jaén,La Rioja,Las Palmas,León,Lleida,Lugo,Madrid,Málaga,Melilla,Murcia,Navarra,Ourense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Sevilla,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Zamora,Zaragoza'.split(',');
+  var sel=document.getElementById('provincia');
+  prov.forEach(function(p){var o=document.createElement('option');o.textContent=p;sel.appendChild(o)});
+
+  var form=document.getElementById('form'),sets=[].slice.call(form.querySelectorAll('fieldset')),cur=0;
+  var prev=document.getElementById('prev'),next=document.getElementById('next');
+
+  /* Borrador en el navegador */
+  var KEY='scott-talent-solicitud';
+  function save(){try{var d={};new FormData(form).forEach(function(v,k){d[k]=d[k]?[].concat(d[k],v):v});localStorage.setItem(KEY,JSON.stringify(d))}catch(e){}}
+  function load(){try{var d=JSON.parse(localStorage.getItem(KEY)||'{}');Object.keys(d).forEach(function(k){
+    var vals=[].concat(d[k]);form.querySelectorAll('[name="'+k+'"]').forEach(function(el){
+      if(el.type==='checkbox')el.checked=vals.indexOf(el.value)>-1||(el.value==='on'&&vals.indexOf('on')>-1);else el.value=vals[0]})})}catch(e){}}
+  load();
+  form.addEventListener('input',function(){save();sumCats();count()});
+
+  /* Total de chavales y contador de caracteres */
+  var cats=[].slice.call(document.querySelectorAll('#cats input'));
+  function sumCats(){var t=cats.reduce(function(a,el){return a+(parseInt(el.value,10)||0)},0);document.getElementById('total').textContent='Total: '+t;return t}
+  function count(){document.getElementById('motivacion-count').textContent=document.getElementById('motivacion').value.length+' / 600'}
+  sumCats();count();
+
+  function validStep(i){
+    var ok=true,fs=sets[i];
+    fs.querySelectorAll('.field,.legal').forEach(function(f){f.classList.remove('invalid')});
+    fs.querySelectorAll('[required]').forEach(function(el){
+      var bad=el.type==='checkbox'?!el.checked:!el.value.trim()||!el.checkValidity();
+      if(bad){ok=false;(el.closest('.field')||el.closest('.legal')).classList.add('invalid')}
+    });
+    if(fs.contains(cats[0])&&sumCats()===0){ok=false;cats[0].closest('.field').classList.add('invalid')}
+    if(!ok){var first=fs.querySelector('.invalid');first.scrollIntoView({behavior:'smooth',block:'center'});var inp=first.querySelector('input,select,textarea');if(inp)inp.focus({preventScroll:true})}
+    return ok;
+  }
+  function show(i){
+    sets.forEach(function(f,j){f.classList.toggle('on',j===i)});
+    cur=i;prev.style.visibility=i?'visible':'hidden';
+    next.textContent=i===sets.length-1?'Enviar solicitud':'Siguiente';
+    document.getElementById('step-label').textContent='Paso '+(i+1)+' de '+sets.length;
+    document.getElementById('step-name').textContent=sets[i].dataset.name;
+    document.getElementById('bar').style.width=((i+1)/sets.length*100)+'%';
+  }
+  function top(){document.getElementById('solicitud').scrollIntoView({behavior:'smooth'})}
+  prev.addEventListener('click',function(){show(cur-1);top()});
+  next.addEventListener('click',function(){
+    if(!validStep(cur))return;
+    if(cur<sets.length-1){show(cur+1);top();return}
+    send();
+  });
+
+  function send(){
+    var d={enviado:new Date().toISOString(),total_chavales:sumCats()};
+    new FormData(form).forEach(function(v,k){d[k]=d[k]?d[k]+', '+v:v});
+    next.disabled=true;next.textContent='Enviando…';
+    var done=function(){form.style.display='none';document.getElementById('done').style.display='block';try{localStorage.removeItem(KEY)}catch(e){};top()};
+    if(!CONFIG.endpoint){console.log('Modo borrador, datos que se enviarían:',d);done();return}
+    fetch(CONFIG.endpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)})
+      .then(done,function(){next.disabled=false;next.textContent='Enviar solicitud';alert('No se ha podido enviar. Revisa tu conexión e inténtalo de nuevo.')});
+  }
+
+  /* Compartir */
+  document.getElementById('share').addEventListener('click',function(){
+    var data={title:'Scott Talent',text:'Scott Talent busca 5 escuelas de ciclismo para 2027. Adhesión gratuita.',url:location.href.split('#')[0]};
+    if(navigator.share){navigator.share(data).catch(function(){})}
+    else{try{navigator.clipboard.writeText(data.url);this.textContent='Enlace copiado'}catch(e){}}
+  });
+
+  show(0);
+  if(/[?&]revisar/.test(location.search)){
+    sets.forEach(function(f){f.classList.add('on')});
+    document.getElementById('nav').style.display='none';
+    document.querySelector('.progress').textContent='Modo revisión: todas las preguntas a la vez';
+    document.querySelector('.bar').style.display='none';
+    var nota=document.createElement('p');nota.className='draft-note';nota.textContent='Modo revisión: aquí ves todas las preguntas del formulario. No se envía nada.';document.body.insertBefore(nota,document.body.firstChild);
+    setTimeout(function(){document.getElementById('solicitud').scrollIntoView()},300);
+  }
+})();
+</script>
+</body>
+</html>
