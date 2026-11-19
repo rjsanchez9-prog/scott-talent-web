@@ -485,11 +485,24 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
       <summary>Política de privacidad</summary>
       <div>
         <p><b>Responsable:</b> C.D. Probikes Morón · CIF G-04981965 · C/ San Roque, 8, 41530 Morón de la Frontera (Sevilla) · rjsanchez9@gmail.com.</p>
+        <p><b>Datos que tratamos:</b> los de la escuela (nombre, CIF, ubicación, actividad) y los de contacto de su responsable técnico (nombre, cargo, email y teléfono). No pedimos datos personales de los chavales.</p>
         <p><b>Finalidad:</b> gestionar la solicitud de adhesión de la escuela a Scott Talent y contactar con su responsable técnico.</p>
         <p><b>Legitimación:</b> consentimiento de la persona que envía el formulario.</p>
         <p><b>Conservación:</b> durante el proceso de selección. Si la escuela no resulta elegida, los datos se borran el 31 de enero de 2027, salvo que nos pida conservarlos para próximas convocatorias.</p>
-        <p><b>Destinatarios:</b> no se ceden datos a terceros salvo obligación legal. Los datos se guardan en Google (Google Sheets).</p>
+        <p><b>Destinatarios:</b> no se ceden datos a terceros salvo obligación legal. Para gestionar las solicitudes usamos servicios de Google (Google Sheets, Apps Script y Gmail), que actúa como encargado del tratamiento. La web está alojada en GitHub Pages (GitHub, Inc.).</p>
+        <p><b>Transferencias internacionales:</b> Google y GitHub pueden tratar datos en Estados Unidos. Ambas empresas están adheridas al Marco de Privacidad de Datos UE-EE. UU. (EU-U.S. Data Privacy Framework), que la Comisión Europea considera que ofrece un nivel de protección adecuado, y aplican además cláusulas contractuales tipo.</p>
+        <p><b>Datos en tu navegador:</b> esta web no usa cookies. Mientras rellenas el formulario, tus respuestas se guardan solo en tu propio navegador para que no las pierdas, y se borran al enviar la solicitud.</p>
         <p><b>Derechos:</b> acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a rjsanchez9@gmail.com. Puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
+      </div>
+    </details>
+    <details id="aviso-legal">
+      <summary>Aviso legal</summary>
+      <div>
+        <p><b>Titular de la web:</b> C.D. Probikes Morón · CIF G-04981965 · C/ San Roque, 8, 41530 Morón de la Frontera (Sevilla) · rjsanchez9@gmail.com.</p>
+        <p><b>Objeto:</b> esta web informa sobre el programa Scott Talent y recoge las solicitudes de adhesión de escuelas de ciclismo. La adhesión es gratuita.</p>
+        <p><b>Propiedad intelectual e industrial:</b> los textos, el diseño y el logo de Scott Talent pertenecen a sus titulares. Las marcas Scott, Castelli, Chaoyang, ISB Sport Bearings, Nutrinovex y Madeinn son de sus respectivos propietarios y se muestran con su autorización como marcas del equipo. No está permitido reproducirlos sin permiso.</p>
+        <p><b>Responsabilidad:</b> el titular procura que la información de la web sea correcta y esté actualizada, pero puede cambiarla sin previo aviso. Las fechas y condiciones del programa pueden ajustarse durante la convocatoria.</p>
+        <p><b>Legislación aplicable:</b> esta web se rige por la legislación española.</p>
       </div>
     </details>
   </div>
@@ -603,6 +616,10 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
   });
 
   show(0);
+
+  /* Los enlaces a la política de privacidad o al aviso legal abren la sección correspondiente. */
+  function abrirSeccion(){var d=location.hash&&document.querySelector('details'+location.hash);if(d){d.open=true;d.scrollIntoView({block:'start'})}}
+  window.addEventListener('hashchange',abrirSeccion);abrirSeccion();
 
   /* Botón fijo en el móvil: aparece al pasar la portada y se oculta al llegar al formulario. */
   if('IntersectionObserver' in window){
