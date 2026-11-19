@@ -110,6 +110,35 @@ section{padding-block:64px}
 .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block}
 .photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 14px;background:linear-gradient(transparent,rgba(15,28,31,.85));color:#fff;font-size:.88rem;font-weight:600}
 
+/* Ventajas en dos bloques: acompañamiento (intangible) y marcas (tangible) */
+.dual{display:grid;gap:16px}
+@media (min-width:860px){.dual{grid-template-columns:1fr 1.1fr;align-items:stretch}}
+.side{border-radius:16px;padding:24px}
+@media (min-width:700px){.side{padding:30px}}
+.side-a{background:var(--petrol);color:#fff}
+.side-b{background:var(--surface);border:1px solid var(--line)}
+.side .tag{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light)}
+.side-b .tag{color:var(--plum)}
+.side h3{font-size:1.8rem;margin:6px 0 20px}
+.ilist,.blist{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.ilist li{display:grid;grid-template-columns:42px 1fr;gap:0 14px;align-items:start}
+.ilist .ic{grid-row:span 2;width:42px;height:42px;border-radius:11px;background:rgba(140,192,188,.16);display:grid;place-items:center;color:var(--teal-light)}
+.ilist .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ilist b{font-weight:700;line-height:1.3}
+.ilist li>span:last-child{color:#B9CFCD;font-size:.92rem;line-height:1.4}
+.blist{gap:0}
+.blist li{display:grid;grid-template-columns:112px 1fr;gap:16px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
+.blist li:first-child{padding-top:0}
+.blist li:last-child{border-bottom:0}
+.blist .lg{height:34px;display:flex;align-items:center}
+.blist .lg img{display:block;height:var(--h);width:auto;max-width:100%;object-fit:contain;filter:grayscale(1);opacity:.85}
+.blist .lg .wordmark{font-family:var(--f-display);font-weight:800;font-size:var(--h);line-height:1;letter-spacing:.05em;text-transform:uppercase;color:#1D1D1B;opacity:.85}
+.blist b{display:block;font-weight:700;line-height:1.3}
+.chip{display:inline-block;margin-top:5px;font-size:.8rem;font-weight:600;line-height:1.3;background:var(--teal-soft);color:var(--teal-text);border-radius:8px;padding:4px 11px}
+.side h3 .ast{color:var(--plum);margin-left:2px}
+.side .who{margin:-14px 0 18px;font-size:.92rem;font-weight:600;color:var(--muted)}
+.side-note{margin-top:16px;font-size:.84rem;color:var(--muted)}
+@media (max-width:420px){.blist li{grid-template-columns:86px 1fr;gap:12px}.blist .lg .wordmark{font-size:calc(var(--h) * .78)}.blist .lg img{height:calc(var(--h) * .85)}}
 .benefits{display:grid;gap:14px}
 @media (min-width:700px){.benefits{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .benefit{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px}
@@ -251,12 +280,33 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
     <div class="sec-head">
       <p class="eyebrow">Para tu escuela</p>
       <h2>Qué recibe una escuela adherida</h2>
+      <p>Dos tipos de ventajas: el acompañamiento del equipo y precios especiales con sus marcas.</p>
     </div>
-    <div class="benefits">
-      <div class="benefit"><div class="k" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><h3>Conexión directa con el equipo</h3><p>Una línea abierta con el cuerpo técnico. Si tenéis un chaval con proyección, el equipo lo conoce y lo sigue de cerca.</p></div>
-      <div class="benefit"><div class="k" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div><h3>Visitas de seguimiento</h3><p>Enrique visita cada escuela una o dos veces al año: entrenamientos, experiencia de la élite y orientación a monitores y familias.</p></div>
-      <div class="benefit"><div class="k" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><h3>Pedido anual con precio especial</h3><p>Un pedido al año a nombre de la escuela, con precio especial en material de las marcas del equipo.</p></div>
-      <div class="benefit"><div class="k" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 21 14 3"/><path d="M20.5 21 10 3"/><path d="M15.5 21 12 15l-3.5 6"/><path d="M2 21h20"/></svg></div><h3>Campus Scott Talent 2027</h3><p>Varios días de convivencia entre las escuelas fundadoras y los corredores del equipo.</p></div>
+    <div class="dual">
+      <article class="side side-a">
+        <p class="tag">1 · Acompañamiento</p>
+        <h3>Lo que aporta Scott Talent</h3>
+        <ul class="ilist">
+        <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span><b>Conexión directa con el equipo</b><span>El equipo conoce y sigue a vuestros chavales con proyección.</span></li>
+        <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></span><b>Visitas de Enrique</b><span>Una o dos al año a cada escuela.</span></li>
+        <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21.4 10.9a1 1 0 0 0 0-1.8L12.8 5.2a2 2 0 0 0-1.7 0L2.6 9.1a1 1 0 0 0 0 1.8l8.6 3.9a2 2 0 0 0 1.7 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></span><b>Formación</b><span>Sesiones online para chavales y monitores.</span></li>
+        <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 21 14 3"/><path d="M20.5 21 10 3"/><path d="M15.5 21 12 15l-3.5 6"/><path d="M2 21h20"/></svg></span><b>Campus Scott Talent 2027</b><span>Días de convivencia con los corredores del equipo.</span></li>
+        <li><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11.5 2.3a.5.5 0 0 1 1 0l2.3 4.7a2.1 2.1 0 0 0 1.6 1.2l5.2.7a.5.5 0 0 1 .3.9l-3.7 3.6a2.1 2.1 0 0 0-.6 1.9l.9 5.1a.5.5 0 0 1-.8.6l-4.6-2.4a2.1 2.1 0 0 0-2 0l-4.6 2.4a.5.5 0 0 1-.8-.6l.9-5.1a2.1 2.1 0 0 0-.6-1.9L2.2 9.8a.5.5 0 0 1 .3-.9l5.1-.7a2.1 2.1 0 0 0 1.6-1.2z"/></svg></span><b>Un objetivo a la vista</b><span>El equipo Scott como referencia para vuestros chavales.</span></li>
+        </ul>
+      </article>
+      <article class="side side-b">
+        <p class="tag">2 · Marcas del equipo</p>
+        <h3>Precios especiales<span class="ast">*</span></h3>
+        <p class="who">Para los chavales de la escuela</p>
+        <ul class="blist">
+        <li><span class="lg"><img src="patrocinadores/scott.svg" alt="Scott" style="--h:22px"></span><span><b>Accesorios de bici Scott</b><span class="chip">Precio especial · 1 pedido al año</span></span></li>
+        <li><span class="lg"><span class="wordmark" role="img" aria-label="Chaoyang" style="--h:24px">Chaoyang</span></span><span><b>Neumáticos</b><span class="chip">Precio especial · 1 pedido al año</span></span></li>
+        <li><span class="lg"><img src="patrocinadores/madeinn.svg" alt="Madeinn" style="--h:13px"></span><span><b>Ruedas</b><span class="chip">Código de descuento a medida · en ocasiones especiales</span></span></li>
+        <li><span class="lg"><img src="patrocinadores/nutrinovex.jpg" alt="Nutrinovex" style="--h:24px"></span><span><b>Nutrición deportiva</b><span class="chip">Código de descuento para la escuela · usos limitados</span></span></li>
+        <li><span class="lg"><img src="patrocinadores/castelli.svg" alt="Castelli" style="--h:15px"></span><span><b>Ropa personalizada</b><span class="chip">Precio especial en ropa personalizada</span></span></li>
+        </ul>
+        <p class="side-note">* Descuentos sujetos a posibles modificaciones. Cada escuela recibe el detalle de las condiciones al firmar el acuerdo.</p>
+      </article>
     </div>
   </div>
 </section>
