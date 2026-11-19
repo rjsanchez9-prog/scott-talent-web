@@ -11,12 +11,23 @@
 <meta property="og:title" content="Scott Talent · Solo 5 escuelas en 2027">
 <meta property="og:description" content="De la escuela al equipo. Adhesión gratuita para escuelas de ciclismo. Presenta tu escuela.">
 <meta property="og:url" content="https://rjsanchez9-prog.github.io/scott-talent-web/">
-<meta property="og:image" content="https://rjsanchez9-prog.github.io/scott-talent-web/logo/scott-talent-avatar.png">
+<meta property="og:image" content="https://rjsanchez9-prog.github.io/scott-talent-web/img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Scott Talent: solo 5 escuelas en 2027. Solicitudes hasta el 6 de diciembre.">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1F3236">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="preload" href="fonts/big-shoulders-display-latin-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/figtree-latin-400.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+/* Tipografías alojadas en la propia web (licencia OFL, ver fonts/): no se envía nada a Google. */
+@font-face{font-family:"Big Shoulders Display";font-weight:700;font-display:swap;src:url(fonts/big-shoulders-display-latin-700.woff2) format("woff2")}
+@font-face{font-family:"Big Shoulders Display";font-weight:800;font-display:swap;src:url(fonts/big-shoulders-display-latin-800.woff2) format("woff2")}
+@font-face{font-family:"Big Shoulders Display";font-weight:900;font-display:swap;src:url(fonts/big-shoulders-display-latin-900.woff2) format("woff2")}
+@font-face{font-family:"Figtree";font-weight:400;font-display:swap;src:url(fonts/figtree-latin-400.woff2) format("woff2")}
+@font-face{font-family:"Figtree";font-weight:500;font-display:swap;src:url(fonts/figtree-latin-500.woff2) format("woff2")}
+@font-face{font-family:"Figtree";font-weight:600;font-display:swap;src:url(fonts/figtree-latin-600.woff2) format("woff2")}
+@font-face{font-family:"Figtree";font-weight:700;font-display:swap;src:url(fonts/figtree-latin-700.woff2) format("woff2")}
 /* Colores tomados de la equipación Scott 2027 (verde azulado, petróleo y ciruela). */
 :root{
   --teal:#5F9693;        /* verde Scott 2027, color principal */
@@ -50,6 +61,11 @@ a{color:inherit}
 .btn:hover{background:var(--plum-dark)}
 .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
 .btn.ghost:hover{border-color:var(--teal)}
+.sticky-cta{position:fixed;left:16px;right:16px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:20;display:none;align-items:center;justify-content:center;gap:10px;font:700 1rem var(--f-body);background:var(--plum);color:#fff;text-decoration:none;border-radius:999px;padding:15px 20px;box-shadow:0 8px 24px rgba(15,28,31,.35);transform:translateY(160%);transition:transform .25s}
+.sticky-cta small{font-weight:500;opacity:.85}
+.sticky-cta.show{transform:none}
+@media (max-width:699px){.sticky-cta{display:flex}}
+@media (prefers-reduced-motion:reduce){.sticky-cta{transition:none}}
 .draft-note{background:#FFF4D6;color:#5C4300;font-size:.85rem;text-align:center;padding:8px 16px}
 
 /* Portada: manchas como las de la equipación */
@@ -97,7 +113,8 @@ section{padding-block:64px}
 .benefits{display:grid;gap:14px}
 @media (min-width:700px){.benefits{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .benefit{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px}
-.benefit .k{grid-row:span 2;font-family:var(--f-display);font-weight:900;font-size:2.6rem;line-height:.85;color:var(--plum)}
+.benefit .k{grid-row:span 2;width:56px;height:56px;border-radius:14px;background:var(--teal-soft);display:grid;place-items:center;color:var(--plum)}
+.benefit .k svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .benefit h3{font-size:1.35rem}
 .benefit p{color:var(--muted);font-size:.95rem}
 
@@ -151,6 +168,7 @@ textarea{min-height:110px;resize:vertical}
 .err{color:var(--error);font-size:.85rem;font-weight:600;display:none}
 .invalid .err{display:block}
 .invalid input,.invalid select,.invalid textarea{border-color:var(--error)}
+.send-err{margin:24px 0 0;background:#FDECEA;color:var(--error);border-radius:10px;padding:12px 14px;font-weight:600;font-size:.92rem}
 .nav{display:flex;justify-content:space-between;gap:12px;margin-top:28px}
 .nav .btn{min-width:130px}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
@@ -166,6 +184,15 @@ textarea{min-height:110px;resize:vertical}
 .family p{font-weight:600}
 
 footer{background:var(--petrol);color:#B9CFCD;padding-block:36px 48px;font-size:.88rem}
+.sponsors{background:#fff;border-top:1px solid var(--line);padding-block:36px 40px}
+.sponsors .eyebrow{text-align:center;margin-bottom:20px}
+/* Todas las marcas en la misma rejilla y con el mismo peso visual: cada logo tiene una altura
+   ajustada a su forma (los alargados más bajos, los compactos más altos) para que ocupen lo mismo. */
+.sponsors ul{list-style:none;margin:0 auto;padding:0;display:grid;grid-template-columns:repeat(3,200px);justify-content:center;gap:32px 36px;--k:1}
+@media (max-width:700px){.sponsors ul{grid-template-columns:repeat(2,150px);gap:26px 28px;--k:.8}}
+.sponsors li{height:60px;display:flex;align-items:center;justify-content:center}
+.sponsors img{display:block;height:calc(var(--h) * var(--k));width:auto;max-width:100%;object-fit:contain;filter:grayscale(1);opacity:.85}
+.sponsors .wordmark{font-family:var(--f-display);font-weight:800;font-size:calc(var(--h) * var(--k));line-height:1;letter-spacing:.05em;text-transform:uppercase;color:#1D1D1B;opacity:.85}
 footer .brands{display:flex;flex-wrap:wrap;gap:8px 24px;font-family:var(--f-display);font-weight:800;font-size:1.4rem;text-transform:uppercase;color:#fff;margin-bottom:18px}
 footer p+p{margin-top:6px}
 footer details{margin-top:16px}
@@ -226,10 +253,10 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
       <h2>Qué recibe una escuela adherida</h2>
     </div>
     <div class="benefits">
-      <div class="benefit"><div class="k">A</div><h3>Conexión directa con el equipo</h3><p>Una línea abierta con el cuerpo técnico. Si tenéis un chaval con proyección, el equipo lo conoce y lo sigue de cerca.</p></div>
-      <div class="benefit"><div class="k">B</div><h3>Visitas de seguimiento</h3><p>Enrique visita cada escuela una o dos veces al año: entrenamientos, experiencia de la élite y orientación a monitores y familias.</p></div>
-      <div class="benefit"><div class="k">C</div><h3>Pedido anual con precio especial</h3><p>Un pedido al año a nombre de la escuela, con precio especial en material de las marcas del equipo.</p></div>
-      <div class="benefit"><div class="k">D</div><h3>Campus Scott Talent 2027</h3><p>Varios días de convivencia entre las escuelas fundadoras y los corredores del equipo.</p></div>
+      <div class="benefit"><div class="k" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><h3>Conexión directa con el equipo</h3><p>Una línea abierta con el cuerpo técnico. Si tenéis un chaval con proyección, el equipo lo conoce y lo sigue de cerca.</p></div>
+      <div class="benefit"><div class="k" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div><h3>Visitas de seguimiento</h3><p>Enrique visita cada escuela una o dos veces al año: entrenamientos, experiencia de la élite y orientación a monitores y familias.</p></div>
+      <div class="benefit"><div class="k" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><h3>Pedido anual con precio especial</h3><p>Un pedido al año a nombre de la escuela, con precio especial en material de las marcas del equipo.</p></div>
+      <div class="benefit"><div class="k" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 21 14 3"/><path d="M20.5 21 10 3"/><path d="M15.5 21 12 15l-3.5 6"/><path d="M2 21h20"/></svg></div><h3>Campus Scott Talent 2027</h3><p>Varios días de convivencia entre las escuelas fundadoras y los corredores del equipo.</p></div>
     </div>
   </div>
 </section>
@@ -274,7 +301,7 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
           <legend>La escuela</legend>
           <div class="field"><label for="escuela">Nombre de la escuela o club <span class="req-mark">*</span></label><input id="escuela" name="escuela" type="text" required autocomplete="organization"><p class="err">Indica el nombre de la escuela.</p></div>
           <div class="two">
-            <div class="field"><label for="cif">CIF <span class="req-mark">*</span></label><input id="cif" name="cif" type="text" required pattern="[A-Za-z][0-9]{7}[0-9A-Za-z]" placeholder="G12345678"><p class="err">Revisa el CIF (una letra y 8 caracteres).</p></div>
+            <div class="field"><label for="cif">CIF <span class="req-mark">*</span></label><input id="cif" name="cif" type="text" required pattern="[A-Za-z][0-9]{7}[0-9A-Za-z]" placeholder="G12345678" autocapitalize="characters"><p class="err">Revisa el CIF: una letra y 8 caracteres, por ejemplo G12345678.</p></div>
             <div class="field"><label for="fundacion">Año de fundación</label><input id="fundacion" name="fundacion" type="number" min="1900" max="2026" inputmode="numeric"></div>
           </div>
           <div class="two">
@@ -402,6 +429,7 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
           </div>
         </fieldset>
 
+        <p class="send-err" id="send-err" role="alert" hidden></p>
         <div class="nav" id="nav">
           <button type="button" class="btn ghost" id="prev">Anterior</button>
           <button type="button" class="btn" id="next">Siguiente</button>
@@ -436,9 +464,22 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
 </section>
 </main>
 
+<section class="sponsors" aria-labelledby="marcas-titulo">
+  <div class="wrap">
+    <p class="eyebrow" id="marcas-titulo">Marcas del equipo 2027</p>
+    <ul>
+      <li style="--h:30px"><img src="patrocinadores/scott.svg" alt="Scott"></li>
+      <li style="--h:20px"><img src="patrocinadores/castelli.svg" alt="Castelli"></li>
+      <li style="--h:34px"><span class="wordmark" role="img" aria-label="Chaoyang">Chaoyang</span></li>
+      <li style="--h:52px"><img src="patrocinadores/isb.png" alt="ISB Sport Bearings"></li>
+      <li style="--h:32px"><img src="patrocinadores/nutrinovex.jpg" alt="Nutrinovex"></li>
+      <li style="--h:17px"><img src="patrocinadores/madeinn.svg" alt="Madeinn"></li>
+    </ul>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
-    <div class="brands"><span>Scott</span><span>Castelli</span><span>Chaoyang</span><span>ISB Sport Bearings</span><span>Nutrinovex</span><span>Madeinn</span></div>
     <p>Scott Talent · Equipo Scott · C.D. Probikes Morón</p>
     <details id="privacidad">
       <summary>Política de privacidad</summary>
@@ -453,6 +494,8 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
     </details>
   </div>
 </footer>
+
+<a class="sticky-cta" id="sticky-cta" href="#solicitud" aria-hidden="true" tabindex="-1">Solicitar plaza <small>· Solo 5 escuelas</small></a>
 
 <script>
 (function(){
@@ -495,7 +538,12 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
   function count(){document.getElementById('motivacion-count').textContent=document.getElementById('motivacion').value.length+' / 600'}
   sumCats();count();
 
+  /* El CIF se acepta con guiones, puntos o espacios (G-12.345.678) y se guarda limpio (G12345678). */
+  var cifInput=document.getElementById('cif');
+  function limpiaCif(){cifInput.value=cifInput.value.toUpperCase().replace(/[\s.\-\/]/g,'')}
+  cifInput.addEventListener('change',function(){limpiaCif();save()});
   function validStep(i){
+    if(sets[i].contains(cifInput))limpiaCif();
     var ok=true,fs=sets[i];
     fs.querySelectorAll('.field,.legal').forEach(function(f){f.classList.remove('invalid')});
     fs.querySelectorAll('[required]').forEach(function(el){
@@ -522,14 +570,29 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
     send();
   });
 
+  /* Envío con comprobación: tras enviar, se pregunta a Google si la solicitud ha llegado de verdad. */
   function send(){
-    var d={enviado:new Date().toISOString(),total_chavales:sumCats()};
+    var id=Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+    var d={enviado:new Date().toISOString(),total_chavales:sumCats(),id_envio:id};
     new FormData(form).forEach(function(v,k){d[k]=d[k]?d[k]+', '+v:v});
+    var errBox=document.getElementById('send-err');errBox.hidden=true;
     next.disabled=true;next.textContent='Enviando…';
     var done=function(){form.style.display='none';document.getElementById('done').style.display='block';try{localStorage.removeItem(KEY)}catch(e){};top()};
+    var fail=function(msg){next.disabled=false;next.textContent='Enviar solicitud';errBox.textContent=msg;errBox.hidden=false;errBox.scrollIntoView({behavior:'smooth',block:'center'})};
     if(!CONFIG.endpoint){console.log('Modo borrador, datos que se enviarían:',d);done();return}
     fetch(CONFIG.endpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)})
-      .then(done,function(){next.disabled=false;next.textContent='Enviar solicitud';alert('No se ha podido enviar. Revisa tu conexión e inténtalo de nuevo.')});
+      .then(function(){comprobar(id,4,done,function(){fail('No hemos podido confirmar que la solicitud haya llegado. Tus respuestas siguen guardadas: vuelve a pulsar "Enviar solicitud" en unos minutos o escríbenos a rjsanchez9@gmail.com.')})},
+            function(){fail('No se ha podido enviar. Revisa tu conexión e inténtalo de nuevo. Tus respuestas siguen guardadas.')});
+  }
+  /* Pregunta a Google (JSONP) si ya tiene la solicitud. Si la comprobación no se puede hacer, se da por buena. */
+  function comprobar(id,intentos,ok,ko){
+    var cb='stOk'+id.replace(/[^a-z0-9]/gi,'')+intentos,sc=document.createElement('script'),hecho=false;
+    var fin=function(){hecho=true;try{delete window[cb]}catch(e){window[cb]=undefined}sc.remove()};
+    window[cb]=function(r){fin();if(r&&r.ok)ok();else if(intentos>1)setTimeout(function(){comprobar(id,intentos-1,ok,ko)},1500);else ko()};
+    sc.onerror=function(){if(!hecho){fin();ok()}};
+    setTimeout(function(){if(!hecho){fin();ok()}},10000);
+    sc.src=CONFIG.endpoint+'?accion=comprobar&id='+encodeURIComponent(id)+'&callback='+cb;
+    setTimeout(function(){document.body.appendChild(sc)},intentos===4?1200:0);
   }
 
   /* Compartir */
@@ -540,6 +603,14 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
   });
 
   show(0);
+
+  /* Botón fijo en el móvil: aparece al pasar la portada y se oculta al llegar al formulario. */
+  if('IntersectionObserver' in window){
+    var cta=document.getElementById('sticky-cta'),vis={hero:true,form:false,pie:false};
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){vis[e.target.id==='solicitud'?'form':e.target.classList.contains('sponsors')?'pie':'hero']=e.isIntersecting});
+      cta.classList.toggle('show',!vis.hero&&!vis.form&&!vis.pie)});
+    io.observe(document.querySelector('.hero'));io.observe(document.getElementById('solicitud'));io.observe(document.querySelector('.sponsors'));
+  }
   if(/[?&]revisar/.test(location.search)){
     sets.forEach(function(f){f.classList.add('on')});
     document.getElementById('nav').style.display='none';
