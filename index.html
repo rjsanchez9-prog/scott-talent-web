@@ -266,7 +266,7 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
     <div>
       <div class="sec-head" style="margin-bottom:18px">
         <p class="eyebrow">Qué es Scott Talent</p>
-        <h2>Un puente hacia la élite</h2>
+        <h2>De la escuela a la élite</h2>
       </div>
       <p>En España cada vez cuesta más que un chaval llegue a profesional de mountain bike. Las escuelas hacen el trabajo de base, pero entre la escuela y la élite falta un puente.</p>
       <p>Scott Talent es una red de escuelas de ciclismo adheridas al equipo Scott. El equipo es un objetivo visible y cercano, y Enrique Morcillo, manager del equipo en 2027, es la persona de referencia para cada escuela.</p>
@@ -305,7 +305,7 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
         <li><span class="lg"><img src="patrocinadores/nutrinovex.jpg" alt="Nutrinovex" style="--h:24px"></span><span><b>Nutrición deportiva</b><span class="chip">Código de descuento para la escuela · usos limitados</span></span></li>
         <li><span class="lg"><img src="patrocinadores/castelli.svg" alt="Castelli" style="--h:15px"></span><span><b>Ropa personalizada</b><span class="chip">Precio especial en ropa personalizada</span></span></li>
         </ul>
-        <p class="side-note">* Descuentos sujetos a posibles modificaciones. Cada escuela recibe el detalle de las condiciones al firmar el acuerdo.</p>
+        <p class="side-note">* Condiciones sujetas a cambios. Cada escuela recibe el detalle al firmar el acuerdo.</p>
       </article>
     </div>
   </div>
@@ -338,7 +338,7 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
     <div class="sec-head">
       <p class="eyebrow">Solicitud</p>
       <h2>Presenta tu escuela</h2>
-      <p>Unos 10 minutos. Los campos con <span class="req-mark">*</span> son obligatorios. Lo que escribas se guarda en este navegador hasta que lo envíes.</p>
+      <p>Se completa en 10 minutos. Los campos con <span class="req-mark">*</span> son obligatorios. Lo que escribas se guarda en este navegador hasta que lo envíes.</p>
     </div>
 
     <div class="form-card">
@@ -453,7 +453,7 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
           <div class="field"><label for="acuerdo_marca">¿Tenéis algún acuerdo o patrocinio con una marca? <span class="req-mark">*</span></label><select id="acuerdo_marca" name="acuerdo_marca" required><option value="">Elige</option><option>No</option><option>Sí</option></select><p class="err">Elige una opción.</p></div>
           <div class="field"><label for="acuerdo_detalle">Si tenéis acuerdo, ¿con qué marca y hasta cuándo?</label><input id="acuerdo_detalle" name="acuerdo_detalle" type="text"></div>
           <div class="field"><label for="tienda">Tienda de bicis de referencia en vuestra zona</label><input id="tienda" name="tienda" type="text" placeholder="Nombre y localidad"></div>
-          <div class="field"><label for="volumen">Material que compráis más o menos por temporada</label><select id="volumen" name="volumen"><option value="">Elige</option><option>Poco (algunas prendas o neumáticos sueltos)</option><option>Medio (ropa para todo el grupo)</option><option>Alto (ropa, neumáticos y componentes para todo el grupo)</option></select></div>
+          <div class="field"><label for="volumen">Volumen de material que compráis por temporada</label><select id="volumen" name="volumen"><option value="">Elige</option><option>Poco (algunas prendas o neumáticos sueltos)</option><option>Medio (ropa para todo el grupo)</option><option>Alto (ropa, neumáticos y componentes para todo el grupo)</option></select></div>
         </fieldset>
 
         <fieldset data-name="Compromiso">
@@ -500,7 +500,7 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
     </div>
     <div class="faq">
       <details><summary>¿Cuánto cuesta adherirse?</summary><p>Nada. La adhesión a Scott Talent es gratuita.</p></details>
-      <details><summary>¿Cuántas escuelas entran?</summary><p>Cinco en 2027, repartidas por toda España. Es una primera edición fundadora y limitada.</p></details>
+      <details><summary>¿Cuántas escuelas entran?</summary><p>Cinco en 2027, repartidas por toda España. Es la primera edición y las plazas son limitadas.</p></details>
       <details><summary>¿Cómo se eligen las escuelas?</summary><p>La dirección de Scott Talent analiza a fondo cada candidatura y valora todos los aspectos de la escuela que se presenta.</p></details>
       <details><summary>¿Cuándo sabremos si hemos entrado?</summary><p>A partir del 7 de diciembre contactaremos con las escuelas candidatas. Las cinco escuelas fundadoras se comunicarán en enero de 2027.</p></details>
       <details><summary>¿Hay bicicletas para los chavales?</summary><p>Para corredores con un nivel excepcional se estudia cada caso con la escuela, Enrique y Scott España, y la compra se hace en un punto de venta Scott cercano.</p></details>
@@ -515,7 +515,7 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
 
 <section class="sponsors" aria-labelledby="marcas-titulo">
   <div class="wrap">
-    <p class="eyebrow" id="marcas-titulo">Marcas del equipo 2027</p>
+    <p class="eyebrow" id="marcas-titulo">Marcas del equipo</p>
     <ul>
       <li style="--h:30px"><img src="patrocinadores/scott.svg" alt="Scott"></li>
       <li style="--h:20px"><img src="patrocinadores/castelli.svg" alt="Castelli"></li>
@@ -643,7 +643,7 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
     var fail=function(msg){next.disabled=false;next.textContent='Enviar solicitud';errBox.textContent=msg;errBox.hidden=false;errBox.scrollIntoView({behavior:'smooth',block:'center'})};
     if(!CONFIG.endpoint){console.log('Modo borrador, datos que se enviarían:',d);done();return}
     fetch(CONFIG.endpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)})
-      .then(function(){comprobar(id,4,done,function(){fail('No hemos podido confirmar que la solicitud haya llegado. Tus respuestas siguen guardadas: vuelve a pulsar "Enviar solicitud" en unos minutos o escríbenos a hola@scotttalent.es.')})},
+      .then(function(){comprobar(id,4,done,function(){fail('No hemos podido confirmar que la solicitud haya llegado. Tus respuestas siguen guardadas: vuelve a pulsar "Enviar solicitud" pasados 5 minutos o escríbenos a hola@scotttalent.es.')})},
             function(){fail('No se ha podido enviar. Revisa tu conexión e inténtalo de nuevo. Tus respuestas siguen guardadas.')});
   }
   /* Pregunta a Google (JSONP) si ya tiene la solicitud. Si la comprobación no se puede hacer, se da por buena. */
