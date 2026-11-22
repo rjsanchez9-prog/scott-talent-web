@@ -10,8 +10,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Scott Talent · Solo 5 escuelas en 2027">
 <meta property="og:description" content="De la escuela al equipo. Adhesión gratuita para escuelas de ciclismo. Presenta tu escuela.">
-<meta property="og:url" content="https://rjsanchez9-prog.github.io/scott-talent-web/">
-<meta property="og:image" content="https://rjsanchez9-prog.github.io/scott-talent-web/img/compartir.jpg?v=2">
+<meta property="og:url" content="https://scotttalent.es/">
+<meta property="og:image" content="https://scotttalent.es/img/compartir.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Scott Talent: solo 5 escuelas en 2027. Solicitudes hasta el 6 de diciembre.">
@@ -533,7 +533,7 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
     <details id="privacidad">
       <summary>Política de privacidad</summary>
       <div>
-        <p><b>Responsable:</b> C.D. Probikes Morón · CIF G-04981965 · C/ San Roque, 8, 41530 Morón de la Frontera (Sevilla) · rjsanchez9@gmail.com.</p>
+        <p><b>Responsable:</b> C.D. Probikes Morón · CIF G-04981965 · C/ San Roque, 8, 41530 Morón de la Frontera (Sevilla) · hola@scotttalent.es.</p>
         <p><b>Datos que tratamos:</b> los de la escuela (nombre, CIF, ubicación, actividad) y los de contacto de su responsable técnico (nombre, cargo, email y teléfono). No pedimos datos personales de los chavales.</p>
         <p><b>Finalidad:</b> gestionar la solicitud de adhesión de la escuela a Scott Talent y contactar con su responsable técnico.</p>
         <p><b>Legitimación:</b> consentimiento de la persona que envía el formulario.</p>
@@ -541,13 +541,13 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
         <p><b>Destinatarios:</b> no se ceden datos a terceros salvo obligación legal. Para gestionar las solicitudes usamos servicios de Google (Google Sheets, Apps Script y Gmail), que actúa como encargado del tratamiento. La web está alojada en GitHub Pages (GitHub, Inc.).</p>
         <p><b>Transferencias internacionales:</b> Google y GitHub pueden tratar datos en Estados Unidos. Ambas empresas están adheridas al Marco de Privacidad de Datos UE-EE. UU. (EU-U.S. Data Privacy Framework), que la Comisión Europea considera que ofrece un nivel de protección adecuado, y aplican además cláusulas contractuales tipo.</p>
         <p><b>Datos en tu navegador:</b> esta web no usa cookies. Mientras rellenas el formulario, tus respuestas se guardan solo en tu propio navegador para que no las pierdas, y se borran al enviar la solicitud.</p>
-        <p><b>Derechos:</b> acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a rjsanchez9@gmail.com. Puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
+        <p><b>Derechos:</b> acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a hola@scotttalent.es. Puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).</p>
       </div>
     </details>
     <details id="aviso-legal">
       <summary>Aviso legal</summary>
       <div>
-        <p><b>Titular de la web:</b> C.D. Probikes Morón · CIF G-04981965 · C/ San Roque, 8, 41530 Morón de la Frontera (Sevilla) · rjsanchez9@gmail.com.</p>
+        <p><b>Titular de la web:</b> C.D. Probikes Morón · CIF G-04981965 · C/ San Roque, 8, 41530 Morón de la Frontera (Sevilla) · hola@scotttalent.es.</p>
         <p><b>Objeto:</b> esta web informa sobre el programa Scott Talent y recoge las solicitudes de adhesión de escuelas de ciclismo. La adhesión es gratuita.</p>
         <p><b>Propiedad intelectual e industrial:</b> los textos, el diseño y el logo de Scott Talent pertenecen a sus titulares. Las marcas Scott, Castelli, Chaoyang, ISB Sport Bearings, Nutrinovex y Madeinn son de sus respectivos propietarios y se muestran con su autorización como marcas del equipo. No está permitido reproducirlos sin permiso.</p>
         <p><b>Responsabilidad:</b> el titular procura que la información de la web sea correcta y esté actualizada, pero puede cambiarla sin previo aviso. Las fechas y condiciones del programa pueden ajustarse durante la convocatoria.</p>
@@ -643,7 +643,7 @@ footer details div{margin-top:10px;display:grid;gap:8px;max-width:70ch}
     var fail=function(msg){next.disabled=false;next.textContent='Enviar solicitud';errBox.textContent=msg;errBox.hidden=false;errBox.scrollIntoView({behavior:'smooth',block:'center'})};
     if(!CONFIG.endpoint){console.log('Modo borrador, datos que se enviarían:',d);done();return}
     fetch(CONFIG.endpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)})
-      .then(function(){comprobar(id,4,done,function(){fail('No hemos podido confirmar que la solicitud haya llegado. Tus respuestas siguen guardadas: vuelve a pulsar "Enviar solicitud" en unos minutos o escríbenos a rjsanchez9@gmail.com.')})},
+      .then(function(){comprobar(id,4,done,function(){fail('No hemos podido confirmar que la solicitud haya llegado. Tus respuestas siguen guardadas: vuelve a pulsar "Enviar solicitud" en unos minutos o escríbenos a hola@scotttalent.es.')})},
             function(){fail('No se ha podido enviar. Revisa tu conexión e inténtalo de nuevo. Tus respuestas siguen guardadas.')});
   }
   /* Pregunta a Google (JSONP) si ya tiene la solicitud. Si la comprobación no se puede hacer, se da por buena. */
